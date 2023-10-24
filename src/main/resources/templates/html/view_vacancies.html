@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Вакансии - Агентство недвижимости в Москве ИНЕРИ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Вакансии. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
+</head>
+<body>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            // Global settings:
+            disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+            startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+            initClassName: 'aos-init', // class applied after initialization
+            animatedClassName: 'aos-animate', // class applied on animation
+            useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+            disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+            debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+            throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+            // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+            offset: 0, // offset (in px) from the original trigger point
+            delay: 200, // values from 0 to 3000, with step 50ms
+            duration: 700, // values from 0 to 3000, with step 50ms
+            easing: 'ease', // default easing for AOS animations
+            once: true, // whether animation should happen only once - while scrolling down
+            mirror: true, // whether elements should animate out while scrolling past them
+            anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+        });
+    </script>
+    <script type="text/javascript">
+        $( () => {
+            $('#menu-vacancies').on('click', () => {
+                $('html,body').animate({
+                    scrollTop: 0
+                },500);
+            });
+        });
+        $( () => {
+            $('#menu-vacancies-mini').on('click', () => {
+                $('html,body').animate({
+                    scrollTop: 0
+                },500);
+            });
+        });
+    </script>
+
+    <div th:replace="fragments/header :: header"></div>
+
+    <div id="vacancies-main" class="full-window-container bg-darkblue">
+        <div id="vacancies-main-content" class="content">
+            <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%">Вакансии</div><br/>
+            <div id="vacancies-main-content-list" style="position: relative; top: 15%">
+                <div th:if="${isAdmin}" style="display: flex; justify-content: flex-start;">
+                    <a th:href="@{'/vacancies/new'}" class="button button-simple-type-1 button-color-add" style="margin-bottom: 10px" data-aos="fade-up" data-aos-delay="200">Добавить новую запись</a>
+                </div>
+                <div class="list-element" data-aos="fade-up" data-aos-delay="300" th:each="vacancy : ${vacancies}">
+                    <div class="first-row-flex">
+                        <div class="name"><a th:text="${vacancy.name}" th:href="@{'/vacancies/' + ${vacancy.id}}"></a></div>
+                        <div class="location" th:text="${vacancy.city.name}"></div>
+                    </div>
+                    <div class="second-row-flex">
+                        <div class="keywords">
+                            <div class="keyword" th:each="keyword : ${vacancy.keywordsList}" th:text="${keyword}"></div>
+                        </div>
+                        <div class="salary">
+                            <div class="salary-content" th:text="${vacancy.summary}"></div>
+                        </div>
+                    </div>
+                    <div th:if="${isAdmin}" th:switch="${vacancy.active}" style="display: flex; justify-content: flex-end; margin-top: 10px">
+                        <a th:case="true" th:href="@{'/vacancies/' + ${vacancy.id} + '/set-active/?is-active=false'}" class="button button-simple-type-1 button-color-change">Деактивировать</a>
+                        <a th:case="false" th:href="@{'/vacancies/' + ${vacancy.id} + '/set-active/?is-active=true'}" class="button button-simple-type-1 button-color-default">Активировать</a>
+                        <a class="button button-simple-type-1 button-color-delete" th:href="@{'/vacancies/' + ${vacancy.id} + '/delete'}" style="margin-left: 10px">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

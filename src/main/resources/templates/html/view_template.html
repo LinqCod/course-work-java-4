@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View template</title>
+    <meta name="description" content="Template. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="full-window-container bg-darkblue">
+    <div class="header-block bg-darkblue4"></div>
+    <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
+    <div class="content">
+        <div class="sub-content" style="width: 80%">
+            <div class="subtitle" style="padding-bottom: 50px">TITLE</div>
+            <div class="flex-table flex-table--3cols">
+                <div class="control-panel">
+                    <a class="button button-simple-type-1 button-color-add">Добавить новую запись</a>
+                </div>
+                <div class="head">
+                    <div class="cell">
+                        HEAD1
+                    </div>
+                    <div class="cell">
+                        HEAD2
+                    </div>
+                    <div class="cell" style="width: 10%">
+                        ACTIONS
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell">
+                        CELL1
+                    </div>
+                    <div class="cell">
+                        CELL2
+                    </div>
+                    <div class="cell actions" style="width: 10%">
+                        <a class="button button-simple-type-1 button-color-change">Изменить</a>
+                        <a class="button button-simple-type-1 button-color-delete" style="margin-left: 10px">Удалить</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell">
+                        CELL1
+                    </div>
+                    <div class="cell">
+                        CELL2
+                    </div>
+                    <div class="cell" style="width: 10%">
+                        CELL3
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

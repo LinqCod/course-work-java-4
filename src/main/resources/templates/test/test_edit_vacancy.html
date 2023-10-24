@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Vacancy TEST</title>
+</head>
+<body>
+  <form th:action="@{'/vacancies/' + ${vacancy.id} + '/edit'}" th:object="${vacancy}" method="post">
+      <label>name:</label>
+      <input type="text" id="name" th:field="*{name}">
+      <br/><br/>
+      <label>keywords:</label>
+      <input type="text" id="keywords" th:field="*{keywords}">
+      <br/><br/>
+      <label>city:</label>
+      <select name="city" id="city">
+          <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+      </select>
+      <br/><br/>
+      <label>summary:</label>
+      <input type="text" id="summary" th:field="*{summary}">
+      <br/><br/>
+      <label>contactUser:</label>
+      <select name="user" id="contactUser" th:field="*{contactUser}">
+          <option th:each="user : ${users}" th:value="${user.id}" th:text="@{${user.surname} + ' ' + ${user.name} + ' ' + ${user.patronymic} + ' (+7 ' + ${user.phoneNumber} + ')'}"></option>
+      </select>
+      <br/><br/>
+      <label>activeStatus:</label>
+      <input type="checkbox" id="activeStatus" value="true" th:field="*{active}">
+      <br/><br/>
+      <label>textDescription:</label>
+      <textarea name="textDescription" rows="5" cols="33" id="textDescription" th:field="*{textDescription}"></textarea>
+      <br/><br/>
+      <label>textStudy:</label>
+      <textarea name="textStudy" rows="5" cols="33" id="textStudy" th:field="*{textStudy}"></textarea>
+      <br/><br/>
+      <label>textResponsibilities:</label>
+      <textarea name="textResponsibilities" rows="5" cols="33" id="textResponsibilities" th:field="*{textResponsibilities}"></textarea>
+      <br/><br/>
+      <label>textRequirements:</label>
+      <textarea name="textRequirements" rows="5" cols="33" id="textRequirements" th:field="*{textRequirements}"></textarea>
+      <br/><br/>
+      <label>textFeatures:</label>
+      <textarea name="textFeatures" rows="5" cols="33" id="textFeatures" th:field="*{textFeatures}"></textarea>
+      <br/><br/>
+      <label>textSummary:</label>
+      <textarea name="textSummary" rows="5" cols="33" id="textSummary" th:field="*{textSummary}"></textarea>
+      <br/><br/>
+      <button type="submit">EDIT</button>
+  </form>
+</body>
+</html>

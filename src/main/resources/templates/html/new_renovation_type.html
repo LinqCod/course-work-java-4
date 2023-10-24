@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="@{'Добавление типа ремонта'}"></title>
+    <meta name="description" content="Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="full-window-container bg-darkblue">
+    <div class="header-block bg-darkblue4"></div>
+    <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
+    <div class="content">
+        <div class="sub-content" style="width: 80%">
+            <div class="subtitle" th:text="@{'Добавление типа ремонта'}" style="padding-bottom: 50px"></div>
+            <form class="form" th:action="@{/renovation-types/new}" th:object="${renovationType}" method="post">
+                <div class="form-content">
+                    <div class="row">
+                        <div class="label">Название:</div>
+                        <div class="input-el"><input type="text" id="name" th:field="*{name}" style="width: 95%"></div>
+                    </div>
+                    <div class="row">
+                        <button class="button button-simple-type-1 button-color-add" type="submit">Добавить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

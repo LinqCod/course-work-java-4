@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Объекты недвижимости</title>
+    <meta name="description" content="Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="full-window-container bg-darkblue">
+    <div class="header-block bg-darkblue4"></div>
+    <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
+    <div class="content">
+        <div class="sub-content" style="width: 95%">
+            <div class="subtitle" style="padding-bottom: 50px; position: sticky">Объекты недвижимости</div>
+            <div class="flex-table flex-table--11cols">
+                <div class="control-panel">
+                    <a class="button button-simple-type-1 button-color-add" href="/estate-objects/new">Добавить новую запись</a>
+                </div>
+                <div class="head">
+                    <div class="cell" style="width: 50px">
+                        ID
+                    </div>
+                    <div class="cell" style="flex-grow: 2">
+                        Адрес
+                    </div>
+                    <div class="cell" style="width: 100px">
+                        Площадь
+                    </div>
+                    <div class="cell" style="width: 100px">
+                        Этаж
+                    </div>
+                    <div class="cell" style="width: 100px">
+                        Кол-во
+                        комнат
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип дома
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип<br/>
+                        недвижимости
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип<br/>
+                        ремонта
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип объекта<br/>
+                        недвижимости
+                    </div>
+                    <div class="cell" style="width: 200px">
+                        Дата<br/>
+                        добавления
+                    </div>
+                    <div class="cell" style="width: 220px">
+                        Действия
+                    </div>
+                </div>
+                <div class="row" th:each="object : ${estateObjects}">
+                    <div class="cell" th:text="${object.id}" style="width: 50px"></div>
+
+                    <div class="cell" th:text="@{'г. ' + ${object.address.city.name} + ' ' + ${object.address.fullAddress}}" style="flex-grow: 2"></div>
+                    <div class="cell center" th:text="@{${object.area} + ' м²'}" style="width: 100px"></div>
+                    <div class="cell center" th:text="@{${object.floor} + '/' + ${object.maxFloor}}" style="width: 100px"></div>
+                    <div class="cell center" th:text="${object.roomSize}" style="width: 100px"></div>
+                    <div class="cell center" th:text="${object.houseType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${object.propertyType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${object.renovationType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${object.estateObjectType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${#temporals.format(object.dateTimeCreated, 'dd.MM.yyy HH:mm')}" style="width: 200px"></div>
+
+                    <div class="cell actions" style="width: 220px">
+                        <a class="button button-simple-type-1 button-color-change" th:href="@{'/estate-objects/' + ${object.id} + '/edit'}">Изменить</a>
+                        <a class="button button-simple-type-1 button-color-delete" th:href="@{'/estate-objects/' + ${object.id} + '/delete'}" style="margin-left: 10px">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

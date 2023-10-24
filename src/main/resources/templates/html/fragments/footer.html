@@ -1,0 +1,39 @@
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<div id="footer" class="footer" th:attrappend="class=${lightTheme} ? ${' bg-darkblue2'} : ${' bg-light'}" th:fragment="footer">
+    <div class="footer-container-column">
+        <div class="footer-container-row">
+            <div class="footer-item">
+                <div class="logo-INERI noselect" th:attrappend="class=${lightTheme} ? ${''} : ${' filter-black'}" id="logo" style="margin-bottom: 25px"></div>
+                <a class="link-underline" th:href="@{'/'}">Главная</a><br/>
+                <a class="link-underline" th:href="@{'/catalog'}">Каталог</a><br/>
+                <a class="link-underline" th:href="@{'/contacts'}">Контакты</a><br/>
+                <a class="link-underline" th:href="@{'/vacancies'}">Вакансии</a><br/>
+                <a class="link-underline" th:href="@{'/login'}">Личный кабинет</a><br/>
+                <div style="margin-top: 10px">developers: <a href="https://github.com/alexsnitol" class="link-underline">@alexsnitol</a> <a href="https://github.com/kozlovsasha2002" class="link-underline">@kozlovsasha2002</a></div>
+            </div>
+            <div class="footer-item">
+                <div class="flex-container flex-column" style="justify-content: space-between;">
+                    <div class="flex-item">
+                        © <div style="display: inline-block" th:text="@{'2021 - ' + ${#dates.format(#dates.createNow(), 'yyyy')}}"></div> ООО “ИНЕРИ”<br/>
+                    </div>
+                    <div class="flex-item">
+                        Все права защищены.
+                    </div>
+                    <div class="flex-item">
+                        ОГРН: 1217700470052
+                    </div>
+                    <div class="flex-item">
+                        ИНН: 7743367509
+                    </div>
+                    <div class="flex-item">
+                        КПП: 774301001
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-item" style="font-size: 14px; margin-top: 10px">
+        Портал inerirealty.ru использует файлы cookie, чтобы улучшить работу и повысить эффективность сайта. Продолжая, вы соглашаетесь с использованием нами cookies. <a th:href="@{'/cookie'}" class="link-underline">Подробнее о том, как мы используем файлы cookie.</a>
+    </div>
+</div>
+</html>
